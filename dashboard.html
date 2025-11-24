@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="pages-style.css" />
+
+    <script>
+      window.onload = function () {
+        let allElements = document.body.querySelectorAll(".sidebar-element");
+        for (let element of allElements) {
+          element.addEventListener("mouseenter", function (e) {
+            if (document.querySelector(".active-link"))
+              document
+                .querySelector(".active-link")
+                .classList.remove("active-link");
+          });
+
+          element.addEventListener("mouseleave", function (e) {
+            if (!document.querySelector(".active-link"))
+              document
+                .querySelector(".sidebar-element a[href='dashboard.html']")
+                .classList.add("active-link");
+          });
+        }
+
+        let allCards = document.body.querySelectorAll(".card");
+        for (let card of allCards) {
+          card.addEventListener("mouseenter", function (e) {
+            if (
+              document.querySelector(".dark-card") &&
+              card.classList.contains("light-card")
+            ) {
+              let darkedCard = document.querySelector(".dark-card");
+              darkedCard.classList.remove("dark-card");
+              darkedCard.classList.add("light-card");
+              card.classList.remove("light-card");
+              card.classList.add("dark-card");
+            }
+          });
+        }
+
+        logOutbtn = document.querySelector(
+          ".sidebar-element a[href='login.html']"
+        );
+        logOutbtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (confirm("Are you sure you want to logout?")) {
+            window.location.href = "login.html";
+          }
+        });
+      }; //End of window.onload
+    </script>
+  </head>
+  <body>
+    <div class="app-container layout-dashboard">
+      <aside class="sidebar">
+        <div class="logo">
+          <a href="dashboard.html">
+            <p><span class="logo-symbol">F</span>lux</p>
+          </a>
+        </div>
+        <div class="sidebar-element">
+          <a href="dashboard.html" class="active-link">
+            <i class="bx bxs-home"></i>
+            <p>Dashboard</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="transactions.html">
+            <i class="bx bx-transfer"></i>
+            <p>Transactions</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="wallets.html">
+            <i class="bx bxs-wallet"></i>
+            <p>My Wallets</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="settings.html">
+            <i class="bx bxs-cog"></i>
+            <p>Settings</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="transfer.html">
+            <i class="bx bx-transfer"></i>
+            <p>Transfer</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="planning.html">
+            <i class="bx bx-trending-up"></i>
+            <p>Planning</p>
+          </a>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="sidebar-element">
+          <a href="#">
+            <i class="bx bxs-help-circle"></i>
+            <p>Help</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="login.html">
+            <i class="bx bx-log-out"></i>
+            <p>Logout</p>
+          </a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <p>Dashboard</p>
+        <div class="cards">
+          <div class="card dark-card" id="total-balance-card">
+            <div class="card-icon">
+              <i class="bx bx-wallet"></i>
+            </div>
+            <div class="card-content">
+              <p class="card-title">Total Balance</p>
+              <p class="card-value">$5,240.21</p>
+            </div>
+          </div>
+
+          <div class="card light-card" id="total-spending-card">
+            <div class="card-icon">
+              <i class="bx bxs-credit-card"></i>
+            </div>
+            <div class="card-content">
+              <p class="card-title">Total Spending</p>
+              <p class="card-value">$250.8</p>
+            </div>
+          </div>
+
+          <div class="card light-card" id="total-saved-card">
+            <div class="card-icon">
+              <i class="bx bxs-bank"></i>
+            </div>
+            <div class="card-content">
+              <p class="card-title">Total Saved</p>
+              <p class="card-value">$550.25</p>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-main-content">
+          <div class="charts">
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3>Working Capital</h3>
+                <select>
+                  <option>Last 7 days</option>
+                  <option>Last 30 days</option>
+                  <option>Last year</option>
+                </select>
+              </div>
+              <div class="chart-body">
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="recent-transaction"></div>
+        </div>
+      </main>
+      <aside class="right-panel">
+        <!-- Right panel content -->
+      </aside>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById("myChart");
+      const chartData = {
+        "Last 7 days": {
+          labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+          income: [12, 19, 10, 15, 22, 30, 25],
+          expenses: [8, 15, 5, 10, 18, 20, 15],
+
+          balance: "$5,240.21",
+          spending: "$250.80",
+          saved: "$550.25",
+        },
+        "Last 30 days": {
+          labels: ["W1", "W2", "W3", "W4"],
+          income: [50, 70, 40, 90],
+          expenses: [30, 40, 20, 60],
+
+          balance: "$12,450.00",
+          spending: "$1,200.50",
+          saved: "$3,400.00",
+        },
+        "Last year": {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          income: [200, 300, 250, 400, 350, 500],
+          expenses: [150, 200, 180, 220, 300, 250],
+
+          balance: "$85,000.00",
+          spending: "$45,000.00",
+          saved: "$20,000.00",
+        },
+      };
+      let myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: chartData["Last 7 days"].labels,
+          datasets: [
+            {
+              label: "Income",
+              data: chartData["Last 7 days"].income,
+              borderColor: "#c8ee44",
+              backgroundColor: "rgba(200, 238, 68, 0.1)",
+              tension: 0.4,
+              fill: true,
+              pointRadius: 0,
+            },
+            {
+              label: "Expenses",
+              data: chartData["Last 7 days"].expenses,
+              borderColor: "#201e34",
+              borderDash: [5, 5],
+              tension: 0.4,
+              pointRadius: 0,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "top",
+              align: "end",
+              labels: { usePointStyle: true, boxWidth: 8 },
+            },
+          },
+          scales: {
+            x: { grid: { display: false } },
+            y: { beginAtZero: true, grid: { borderDash: [5, 5] } },
+          },
+        },
+      });
+
+      const timeSelect = document.querySelector(".chart-header select");
+      const balanceCard = document.getElementById("total-balance-card");
+      const spendingCard = document.getElementById("total-spending-card");
+      const savedCard = document.getElementById("total-saved-card");
+
+      timeSelect.addEventListener("change", function () {
+        const selectedOption = this.value;
+        myChart.data.labels = chartData[selectedOption].labels;
+        myChart.data.datasets[0].data = chartData[selectedOption].income;
+        myChart.data.datasets[1].data = chartData[selectedOption].expenses;
+        balanceCard.querySelector(".card-value").textContent =
+          chartData[selectedOption].balance;
+        spendingCard.querySelector(".card-value").textContent =
+          chartData[selectedOption].spending;
+        savedCard.querySelector(".card-value").textContent =
+          chartData[selectedOption].saved;
+        myChart.update();
+      });
+    </script>
+  </body>
+</html>
