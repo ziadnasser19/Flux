@@ -12,17 +12,14 @@
   min-height: 100vh;
 }
 
+.layout-pages,
 .layout-dashboard {
-  grid-template-columns: 210px 1fr 300px;
-}
-
-.layout-pages {
-  grid-template-columns: 210px 1fr;
+  grid-template-columns: 250px 1fr;
 }
 
 .sidebar {
-  background-color: #e5e5e5;
-  border-right: 1px solid #f0f0f0;
+  background-color: #f5f7fa;
+  border-right: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -49,7 +46,7 @@
   border-radius: 12px;
   padding: 10px 24px;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 40px;
   letter-spacing: -1px;
   font-family: "Outfit", sans-serif;
   width: fit-content;
@@ -78,14 +75,14 @@
 
 .sidebar-element a {
   display: flex;
-  flex-direction: row;
   margin-top: 20px;
-  font-size: 16px;
+  font-size: 20px;
   width: 100%;
   text-decoration: none;
+  margin-bottom: 5px;
   color: #929eae;
   border-radius: 10px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .active-link {
@@ -95,19 +92,16 @@
   background-color: #c8ee44 !important;
   cursor: pointer !important;
   border-radius: 10px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
 }
 
 .sidebar-element a:hover {
-  padding: 12px 20px;
-  color: #201e34;
-  font-weight: 400;
-  background-color: #c8ee44;
-  cursor: pointer;
+  transform: translateY(-2px);
 }
 
 .sidebar-element i {
   margin-right: 12px;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .spacer {
@@ -115,8 +109,8 @@
 }
 
 .main-content {
-  padding: 20px 30px;
-  background-color: #fafafa;
+  padding: 40px 30px 20px 30px;
+  background-color: white;
   height: 100vh;
   overflow-y: auto;
   font-family: "Kumbh Sans", sans-serif;
@@ -125,11 +119,68 @@
   padding-bottom: 100px;
 }
 
-.main-content p {
+.top-header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.top-header p {
   font-size: 28px;
   color: #201e34;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 15px;
+  margin-right: 150px;
+}
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-box {
+  transition: all 0.4s ease;
+  padding: 5px;
+  width: 40px;
+  overflow: hidden;
+}
+
+.search-box input {
+  width: 0;
+  opacity: 0;
+  padding: 0;
+  transition: all 0.4s ease;
+}
+
+.search-box.active {
+  width: 250px;
+  padding: 8px 15px;
+}
+
+.search-box.active input {
+  width: 100%;
+  opacity: 1;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background-color: #f5f7fa;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-section:hover {
+  transform: translateY(-3px);
 }
 
 .cards {
@@ -152,7 +203,6 @@
   min-width: 260px;
   flex: 1 1 260px;
   height: 90px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   transition: transform 0.3s ease;
   border: 1px solid transparent;
 }
@@ -189,7 +239,7 @@
   margin-top: 15px;
   font-size: 14px;
   font-weight: 500;
-  color: #929eae;
+  color: #64748b;
   line-height: 1;
   margin-bottom: 2px;
   padding-bottom: 2px;
@@ -203,7 +253,9 @@
 }
 
 .dark-card {
-  background-color: #201e34;
+  background-color: #1a1b25;
+  border: 1px solid #1a1b25;
+  box-shadow: 0 10px 30px -10px rgba(32, 30, 52, 0.6);
 }
 
 .dark-card .card-value {
@@ -217,7 +269,8 @@
 
 .light-card {
   background-color: #ffffff;
-  border: 1px solid #f1f5f9;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .light-card .card-value {
@@ -241,7 +294,8 @@
   background-color: #ffffff;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -278,4 +332,38 @@
   flex-grow: 1;
   width: 100%;
   min-height: 0;
+}
+
+.recent-transaction {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.transaction-header a {
+  text-decoration: none;
+  color: #29a073;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.transaction-table th {
+  color: #929eae;
 }

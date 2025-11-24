@@ -15,17 +15,31 @@
         let allElements = document.body.querySelectorAll(".sidebar-element");
         for (let element of allElements) {
           element.addEventListener("mouseenter", function (e) {
-            if (document.querySelector(".active-link"))
+            if (
+              document.querySelector(".active-link") != this.querySelector("a")
+            ) {
               document
                 .querySelector(".active-link")
                 .classList.remove("active-link");
+              this.querySelector("a").classList.add("active-link");
+            }
           });
 
           element.addEventListener("mouseleave", function (e) {
-            if (!document.querySelector(".active-link"))
-              document
-                .querySelector(".sidebar-element a[href='dashboard.html']")
-                .classList.add("active-link");
+            if (
+              this.querySelector("a").getAttribute("href") !=
+              window.location.pathname.split("/").pop()
+            ) {
+              this.querySelector("a").classList.remove("active-link");
+              let currentPageLink = document.querySelector(
+                `.sidebar-element a[href='${window.location.pathname
+                  .split("/")
+                  .pop()}']`
+              );
+              if (currentPageLink) {
+                currentPageLink.classList.add("active-link");
+              }
+            }
           });
         }
 
@@ -125,7 +139,24 @@
       </aside>
 
       <main class="main-content">
-        <p>Dashboard</p>
+        <div class="top-header">
+          <p>Dashboard</p>
+          <div class="spacer"></div>
+          <div class="header-actions">
+            <div class="search-box">
+              <i class="bx bx-search"></i>
+              <input type="text" placeholder="Search..." class="search-input" />
+            </div>
+
+            <i class="bx bx-bell"></i>
+
+            <div class="profile-section">
+              <i class="bx bxs-user"></i>
+              <h4>Ziad Ahmed</h4>
+              <i class="bx bx-chevron-down"></i>
+            </div>
+          </div>
+        </div>
         <div class="cards">
           <div class="card dark-card" id="total-balance-card">
             <div class="card-icon">
@@ -173,12 +204,27 @@
               </div>
             </div>
           </div>
-          <div class="recent-transaction"></div>
+          <div class="recent-transaction">
+            <div class="transaction-header">
+              <h3>Recent Transactions</h3>
+              <a href="transactions.html">
+                View All
+                <i class="bx bx-chevron-right"></i>
+              </a>
+            </div>
+            <table class="transaction-table">
+              <thead>
+                <tr>
+                  <th>NAME/BUSINESS</th>
+                  <th>TYPE</th>
+                  <th>AMOUNT</th>
+                  <th>DATE</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
       </main>
-      <aside class="right-panel">
-        <!-- Right panel content -->
-      </aside>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -259,17 +305,18 @@
       const spendingCard = document.getElementById("total-spending-card");
       const savedCard = document.getElementById("total-saved-card");
 
+      const balanceValue = balanceCard.querySelector(".card-value");
+      const spendingValue = spendingCard.querySelector(".card-value");
+      const savedValue = savedCard.querySelector(".card-value");
+
       timeSelect.addEventListener("change", function () {
         const selectedOption = this.value;
         myChart.data.labels = chartData[selectedOption].labels;
         myChart.data.datasets[0].data = chartData[selectedOption].income;
         myChart.data.datasets[1].data = chartData[selectedOption].expenses;
-        balanceCard.querySelector(".card-value").textContent =
-          chartData[selectedOption].balance;
-        spendingCard.querySelector(".card-value").textContent =
-          chartData[selectedOption].spending;
-        savedCard.querySelector(".card-value").textContent =
-          chartData[selectedOption].saved;
+        balanceValue.textContent = chartData[selectedOption].balance;
+        spendingValue.textContent = chartData[selectedOption].spending;
+        savedValue.textContent = chartData[selectedOption].saved;
         myChart.update();
       });
     </script>
