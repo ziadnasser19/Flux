@@ -68,6 +68,15 @@
             window.location.href = "login.html";
           }
         });
+
+        searchBox = document.querySelector(".search-box");
+        searchBox.addEventListener("click", function () {
+          this.classList.add("active");
+        });
+
+        searchInput.addEventListener("blur", function () {
+          searchBox.classList.remove("active");
+        });
       }; //End of window.onload
     </script>
   </head>
@@ -144,15 +153,13 @@
           <div class="spacer"></div>
           <div class="header-actions">
             <div class="search-box">
-              <i class="bx bx-search"></i>
+              <i class="bx bx-search search-icon"></i>
               <input type="text" placeholder="Search..." class="search-input" />
             </div>
-
-            <i class="bx bx-bell"></i>
-
+            <i class="bx bx-bell notification-icon"></i>
             <div class="profile-section">
               <i class="bx bxs-user"></i>
-              <h4>Ziad Ahmed</h4>
+              <h4>Ziad Nasser</h4>
               <i class="bx bx-chevron-down"></i>
             </div>
           </div>
@@ -221,6 +228,52 @@
                   <th>DATE</th>
                 </tr>
               </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="transaction-info">
+                      <i class="bx bxs-movie-play"></i>
+                      <div class="transaction-text">
+                        <p class="transaction-name">Shahid VIP Subscription</p>
+                        <p class="transaction-company">Shahid VIP</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Entertainment</td>
+                  <td class="negative">-$9.99</td>
+                  <td>25-11-2025</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="transaction-info">
+                      <i class="bx bxl-upwork"></i>
+                      <div class="transaction-text">
+                        <p class="transaction-name">Web Development</p>
+                        <p class="transaction-company">Upwork Freelance</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Income</td>
+                  <td class="positive">+$19.99</td>
+                  <td>24-11-2025</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="transaction-info">
+                      <i class="bx bxl-amazon"></i>
+                      <div class="transaction-text">
+                        <p class="transaction-name">Electronics</p>
+                        <p class="transaction-company">Amazon</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Shopping</td>
+                  <td class="negative">-$200.50</td>
+                  <td>20-11-2025</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
