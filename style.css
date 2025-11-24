@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.full-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: white;
+}
+
+.left-section {
+  width: 53.125%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.left-section p {
+  font-family: "Outfit", sans-serif;
+}
+
+.logo {
+  background-color: white;
+  padding: 10px 24px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -1px;
+  font-family: "Outfit", sans-serif;
+  width: fit-content;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+
+  transition: all 0.3s ease;
+}
+.logo-symbol {
+  color: #c8ee44;
+}
+
+.logo:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.sign-in-form,
+.sign-up-form {
+  font-family: "Kumbh Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: 15px;
+}
+
+.welcome-text {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #1a1a1a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.input-group input {
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  font-family: "outfit", sans-serif;
+  transition: 0.3s;
+  margin-bottom: 4px;
+}
+
+.input-group input:focus {
+  border-color: #c8ee44;
+  box-shadow: 0 0 0 4px rgba(200, 238, 68, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.form-actions a {
+  text-decoration: none;
+}
+.form-actions a :hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form-actions a:visited {
+  color: #1a1a1a;
+}
+
+.form-actions a:hover {
+  color: #666;
+  text-decoration: underline;
+}
+
+.sign-in-form p,
+.sign-up-form p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.btn-primary {
+  background-color: #c8ee44;
+  color: #1a1a1a;
+  width: 100%;
+  height: 50px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #b3d63d;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #1a1a1a;
+  width: 100%;
+  height: 50px;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: rgb(221, 221, 221);
+  border-color: #ced1d5ef;
+  transform: translateY(-3px);
+}
+
+.google-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.remember-me input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #1a1a1a;
+}
+
+.sign-up-text,
+.sign-in-text {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+}
+
+.sign-up-link,
+.sign-in-link {
+  color: #1a1a1a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sign-up-link:hover,
+.sign-in-link:hover {
+  text-decoration: underline;
+}
+
+.right-section {
+  width: 46.875%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 0;
+}
+
+.registeration-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
