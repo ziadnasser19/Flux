@@ -68,13 +68,25 @@
             window.location.href = "login.html";
           }
         });
+        const searchBox = document.querySelector(".search-box");
+        const searchIcon = document.querySelector(".search-icon");
+        const searchInput = document.querySelector(".search-input");
 
-        searchBox = document.querySelector(".search-box");
-        searchBox.addEventListener("click", function () {
-          this.classList.add("active");
+        searchIcon.addEventListener("click", function (e) {
+          e.stopPropagation();
+          searchBox.classList.toggle("active");
+          if (searchBox.classList.contains("active")) {
+            searchInput.focus();
+          } else {
+            searchInput.value = "";
+          }
         });
 
-        searchInput.addEventListener("blur", function () {
+        searchBox.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        document.addEventListener("click", function () {
           searchBox.classList.remove("active");
         });
       }; //End of window.onload
@@ -200,7 +212,7 @@
             <div class="chart-container">
               <div class="chart-header">
                 <h3>Working Capital</h3>
-                <select>
+                <select title="Coose period">
                   <option>Last 7 days</option>
                   <option>Last 30 days</option>
                   <option>Last year</option>

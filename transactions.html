@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transactions</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="pages-style.css" />
+
+    <script>
+      window.onload = function () {
+        let allElements = document.body.querySelectorAll(".sidebar-element");
+        for (let element of allElements) {
+          element.addEventListener("mouseenter", function (e) {
+            if (
+              document.querySelector(".active-link") != this.querySelector("a")
+            ) {
+              document
+                .querySelector(".active-link")
+                .classList.remove("active-link");
+              this.querySelector("a").classList.add("active-link");
+            }
+          });
+
+          element.addEventListener("mouseleave", function (e) {
+            if (
+              this.querySelector("a").getAttribute("href") !=
+              window.location.pathname.split("/").pop()
+            ) {
+              this.querySelector("a").classList.remove("active-link");
+              let currentPageLink = document.querySelector(
+                `.sidebar-element a[href='${window.location.pathname
+                  .split("/")
+                  .pop()}']`
+              );
+              if (currentPageLink) {
+                currentPageLink.classList.add("active-link");
+              }
+            }
+          });
+        }
+
+        let allCards = document.body.querySelectorAll(".card");
+        for (let card of allCards) {
+          card.addEventListener("mouseenter", function (e) {
+            if (
+              document.querySelector(".dark-card") &&
+              card.classList.contains("light-card")
+            ) {
+              let darkedCard = document.querySelector(".dark-card");
+              darkedCard.classList.remove("dark-card");
+              darkedCard.classList.add("light-card");
+              card.classList.remove("light-card");
+              card.classList.add("dark-card");
+            }
+          });
+        }
+
+        logOutbtn = document.querySelector(
+          ".sidebar-element a[href='login.html']"
+        );
+        logOutbtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (confirm("Are you sure you want to logout?")) {
+            window.location.href = "login.html";
+          }
+        });
+        const searchBox = document.querySelector(".search-box");
+        const searchIcon = document.querySelector(".search-icon");
+        const searchInput = document.querySelector(".search-input");
+
+        searchIcon.addEventListener("click", function (e) {
+          e.stopPropagation();
+          searchBox.classList.toggle("active");
+          if (searchBox.classList.contains("active")) {
+            searchInput.focus();
+          } else {
+            searchInput.value = "";
+          }
+        });
+
+        searchBox.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        document.addEventListener("click", function () {
+          searchBox.classList.remove("active");
+        });
+      }; //End of window.onload
+    </script>
+  </head>
+  <body>
+    <div class="app-container layout-dashboard">
+      <aside class="sidebar">
+        <div class="logo">
+          <a href="dashboard.html">
+            <p><span class="logo-symbol">F</span>lux</p>
+          </a>
+        </div>
+        <div class="sidebar-element">
+          <a href="dashboard.html">
+            <i class="bx bxs-home"></i>
+            <p>Dashboard</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="transactions.html" class="active-link">
+            <i class="bx bx-transfer"></i>
+            <p>Transactions</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="wallets.html">
+            <i class="bx bxs-wallet"></i>
+            <p>My Wallets</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="settings.html">
+            <i class="bx bxs-cog"></i>
+            <p>Settings</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="transfer.html">
+            <i class="bx bx-transfer"></i>
+            <p>Transfer</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="planning.html">
+            <i class="bx bx-trending-up"></i>
+            <p>Planning</p>
+          </a>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="sidebar-element">
+          <a href="#">
+            <i class="bx bxs-help-circle"></i>
+            <p>Help</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="login.html">
+            <i class="bx bx-log-out"></i>
+            <p>Logout</p>
+          </a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="top-header">
+          <p>Transactions</p>
+          <div class="spacer"></div>
+          <div class="header-actions">
+            <div class="search-box">
+              <i class="bx bx-search search-icon"></i>
+              <input type="text" placeholder="Search..." class="search-input" />
+            </div>
+            <i class="bx bx-bell notification-icon"></i>
+            <div class="profile-section">
+              <i class="bx bxs-user"></i>
+              <h4>Ziad Nasser</h4>
+              <i class="bx bx-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="content-area">
+          <div class="transaction-search-box">
+            <i class="bx bx-search search-icon"></i>
+            <input
+              type="text"
+              placeholder="Search anything on Transactions"
+              class="search-input"
+            />
+          </div>
+          <table class="transaction-table">
+            <thead>
+              <tr>
+                <th>NAME/BUSINESS</th>
+                <th>TYPE</th>
+                <th>AMOUNT</th>
+                <th>DATE</th>
+                <th>Invoice ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxs-movie-play"></i>
+                    <div class="transaction-text">
+                      <p class="transaction-name">Shahid VIP Subscription</p>
+                      <p class="transaction-company">Shahid VIP</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Entertainment</td>
+                <td class="negative">-$50.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>22-11-2025</p>
+                    <p class="transaction-time">at 10:30 AM</p>
+                  </div>
+                </td>
+                <td>#INV-123456</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxl-upwork"></i>
+                    <div class="transaction-text">
+                      <p class="transaction-name">Web Development</p>
+                      <p class="transaction-company">Upwork Freelance</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Income</td>
+                <td class="positive">+$600.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>24-11-2025</p>
+                    <p class="transaction-time">at 6:30 PM</p>
+                  </div>
+                </td>
+                <td>#INV-111222</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxl-amazon"></i>
+                    <div class="transaction-text">
+                      <p class="transaction-name">Electronics</p>
+                      <p class="transaction-company">Amazon</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Shopping</td>
+                <td class="negative">-$1200.50</td>
+                <td>
+                  <div class="date-time">
+                    <p>20-11-2025</p>
+                    <p class="transaction-time">at 8:22 PM</p>
+                  </div>
+                </td>
+                <td>#INV-111333</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxs-movie-play"></i>
+                    <div class="transaction-text">
+                      <p class="transaction-name">Netflix Subscription</p>
+                      <p class="transaction-company">Netflix</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Entertainment</td>
+                <td class="negative">-$85.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>15-11-2025</p>
+                    <p class="transaction-time">at 09:00 PM</p>
+                  </div>
+                </td>
+                <td>#INV-009901</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bx-wifi"></i>
+                    <div class="transaction-text">
+                      <p>Internet Bill</p>
+                      <p class="transaction-company">Vodafone</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Utilities</td>
+                <td class="negative">-$400.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>01-11-2025</p>
+                    <p class="transaction-time">at 11:00 AM</p>
+                  </div>
+                </td>
+                <td>#INV-009902</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bx-building-house"></i>
+                    <div class="transaction-text">
+                      <p>Monthly Salary</p>
+                      <p class="transaction-company">Tech Corp</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Income</td>
+                <td class="positive">+$11,500.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>01-11-2025</p>
+                    <p class="transaction-time">at 09:00 AM</p>
+                  </div>
+                </td>
+                <td>#INV-009907</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxs-t-shirt"></i>
+                    <div class="transaction-text">
+                      <p>Running Shoes</p>
+                      <p class="transaction-company">Nike Store</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Shopping</td>
+                <td class="negative">-$720.50</td>
+                <td>
+                  <div class="date-time">
+                    <p>10-11-2025</p>
+                    <p class="transaction-time">at 05:45 PM</p>
+                  </div>
+                </td>
+                <td>#INV-009904</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxl-kickstarter"></i>
+                    <div class="transaction-text">
+                      <p>Logo Design</p>
+                      <p class="transaction-company">Fiverr Gig</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Income</td>
+                <td class="positive">+$340.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>08-11-2025</p>
+                    <p class="transaction-time">at 02:00 PM</p>
+                  </div>
+                </td>
+                <td>#INV-009914</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bx-dumbbell"></i>
+                    <div class="transaction-text">
+                      <p>Gold's Gym</p>
+                      <p class="transaction-company">Membership</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Health</td>
+                <td class="negative">-$350.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>01-11-2025</p>
+                    <p class="transaction-time">at 06:00 PM</p>
+                  </div>
+                </td>
+                <td>#INV-009912</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxs-coffee"></i>
+                    <div class="transaction-text">
+                      <p>Morning Coffee</p>
+                      <p class="transaction-company">Starbucks</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Food</td>
+                <td class="negative">-$30.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>03-11-2025</p>
+                    <p class="transaction-time">at 09:15 AM</p>
+                  </div>
+                </td>
+                <td>#INV-009913</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxs-gas-pump"></i>
+                    <div class="transaction-text">
+                      <p class="transaction-name">Car Refuel</p>
+                      <p class="transaction-company">Shell Station</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Transport</td>
+                <td class="negative">-$600.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>02-11-2025</p>
+                    <p class="transaction-time">at 07:30 AM</p>
+                  </div>
+                </td>
+                <td>#INV-009915</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bxs-zap"></i>
+                    <div class="transaction-text">
+                      <p>Electricity Bill</p>
+                      <p class="transaction-company">Electric Company</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Utilities</td>
+                <td class="negative">-$500.20</td>
+                <td>
+                  <div class="date-time">
+                    <p>28-10-2025</p>
+                    <p class="transaction-time">at 10:00 AM</p>
+                  </div>
+                </td>
+                <td>#INV-009916</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="transaction-info">
+                    <i class="bx bx-money"></i>
+                    <div class="transaction-text">
+                      <p>ATM Withdrawal</p>
+                      <p class="transaction-company">NBE ATM</p>
+                    </div>
+                  </div>
+                </td>
+                <td>Cash</td>
+                <td class="negative">-$500.00</td>
+                <td>
+                  <div class="date-time">
+                    <p>25-10-2025</p>
+                    <p class="transaction-time">at 09:45 PM</p>
+                  </div>
+                </td>
+                <td>#INV-009917</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
