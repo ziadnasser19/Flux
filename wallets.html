@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Wallets</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="pages-style.css" />
+
+    <script>
+      window.onload = function () {
+        let allElements = document.body.querySelectorAll(".sidebar-element");
+        for (let element of allElements) {
+          element.addEventListener("mouseenter", function (e) {
+            if (
+              document.querySelector(".active-link") != this.querySelector("a")
+            ) {
+              document
+                .querySelector(".active-link")
+                .classList.remove("active-link");
+              this.querySelector("a").classList.add("active-link");
+            }
+          });
+
+          element.addEventListener("mouseleave", function (e) {
+            if (
+              this.querySelector("a").getAttribute("href") !=
+              window.location.pathname.split("/").pop()
+            ) {
+              this.querySelector("a").classList.remove("active-link");
+              let currentPageLink = document.querySelector(
+                `.sidebar-element a[href='${window.location.pathname
+                  .split("/")
+                  .pop()}']`
+              );
+              if (currentPageLink) {
+                currentPageLink.classList.add("active-link");
+              }
+            }
+          });
+        }
+
+        let allCards = document.body.querySelectorAll(".card");
+        for (let card of allCards) {
+          card.addEventListener("mouseenter", function (e) {
+            if (
+              document.querySelector(".dark-card") &&
+              card.classList.contains("light-card")
+            ) {
+              let darkedCard = document.querySelector(".dark-card");
+              darkedCard.classList.remove("dark-card");
+              darkedCard.classList.add("light-card");
+              card.classList.remove("light-card");
+              card.classList.add("dark-card");
+            }
+          });
+        }
+
+        logOutbtn = document.querySelector(
+          ".sidebar-element a[href='login.html']"
+        );
+        logOutbtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (confirm("Are you sure you want to logout?")) {
+            window.location.href = "login.html";
+          }
+        });
+        const searchBox = document.querySelector(".search-box");
+        const searchIcon = document.querySelector(".search-icon");
+        const searchInput = document.querySelector(".search-input");
+
+        searchIcon.addEventListener("click", function (e) {
+          e.stopPropagation();
+          searchBox.classList.toggle("active");
+          if (searchBox.classList.contains("active")) {
+            searchInput.focus();
+          } else {
+            searchInput.value = "";
+          }
+        });
+
+        searchBox.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        document.addEventListener("click", function () {
+          searchBox.classList.remove("active");
+        });
+      }; //End of window.onload
+    </script>
+  </head>
+  <body>
+    <div class="app-container layout-dashboard">
+      <aside class="sidebar">
+        <div class="logo">
+          <a href="dashboard.html">
+            <p><span class="logo-symbol">F</span>lux</p>
+          </a>
+        </div>
+        <div class="sidebar-element">
+          <a href="dashboard.html">
+            <i class="bx bxs-home"></i>
+            <p>Dashboard</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="transactions.html">
+            <i class="bx bx-transfer"></i>
+            <p>Transactions</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="wallets.html" class="active-link">
+            <i class="bx bxs-wallet"></i>
+            <p>My Wallets</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="settings.html">
+            <i class="bx bxs-cog"></i>
+            <p>Settings</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="transfer.html">
+            <i class="bx bx-transfer"></i>
+            <p>Transfer</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="planning.html">
+            <i class="bx bx-trending-up"></i>
+            <p>Planning</p>
+          </a>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="sidebar-element">
+          <a href="#">
+            <i class="bx bxs-help-circle"></i>
+            <p>Help</p>
+          </a>
+        </div>
+
+        <div class="sidebar-element">
+          <a href="login.html">
+            <i class="bx bx-log-out"></i>
+            <p>Logout</p>
+          </a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="top-header">
+          <p>My Wallets</p>
+          <div class="spacer"></div>
+          <div class="header-actions">
+            <div class="search-box">
+              <i class="bx bx-search search-icon"></i>
+              <input type="text" placeholder="Search..." class="search-input" />
+            </div>
+            <i class="bx bx-bell notification-icon"></i>
+            <div class="profile-section">
+              <i class="bx bxs-user"></i>
+              <h4>Ziad Nasser</h4>
+              <i class="bx bx-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="content-area">
+          <div class="budjet-header">
+            <h3></h3>
+            <button class="add-btn">
+              <i class="bx bx-plus"></i> Add New Card
+            </button>
+          </div>
+          <div class="main-grid">
+            <div class="wallet">
+              <div class="card type1">
+                <div class="card-top">
+                  <span class="bank-name">Flux</span>
+                  <i class="bx bx-wifi card-wifi"></i>
+                </div>
+                <div class="card-middle">
+                  <div class="card-number">**** **** **** 1234</div>
+
+                  <div class="sim-chip"></div>
+                </div>
+                <div class="card-bottom">
+                  <div class="card-exp-info">
+                    <span class="exp-label">Expires</span>
+                    <span class="exp-date">12/26</span>
+                  </div>
+                  <div class="card-brand">
+                    <i class="bx bxl-visa"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="wallet-details">
+                <div class="top-details">
+                  <div class="balance-info">
+                    <p>Your Balance</p>
+                    <span class="balance-value">$5,240.00</span>
+                  </div>
+                  <div class="change-percentage positive">
+                    <i class="bx bx-up-arrow-alt"></i> 23.65%
+                  </div>
+                </div>
+                <div class="bottom-details">
+                  <div class="currency-box">
+                    <span class="currency-label">Currency</span>
+                    <span class="currency-value">USD</span>
+                  </div>
+                  <div class="status-box">
+                    <span class="status-label">Status</span>
+                    <span class="status-value">Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wallet">
+              <div class="card type2">
+                <div class="card-top">
+                  <span class="bank-name">Flux</span>
+                  <i class="bx bx-wifi card-wifi"></i>
+                </div>
+                <div class="card-middle">
+                  <div class="card-number">**** **** **** 5678</div>
+                  <div class="sim-chip"></div>
+                </div>
+                <div class="card-bottom">
+                  <div class="card-exp-info">
+                    <span class="exp-label">Expires</span>
+                    <span class="exp-date">08/27</span>
+                  </div>
+                  <div class="card-brand">
+                    <i class="bx bxl-visa"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="wallet-details">
+                <div class="top-details">
+                  <div class="balance-info">
+                    <p>Your Balance</p>
+                    <span class="balance-value">$60,500.00</span>
+                  </div>
+                  <div class="change-percentage negative">
+                    <i class="bx bx-up-arrow-alt"></i> 8.42%
+                  </div>
+                </div>
+                <div class="bottom-details">
+                  <div class="currency-box">
+                    <span class="currency-label">Currency</span>
+                    <span class="currency-value">EGP</span>
+                  </div>
+                  <div class="status-box">
+                    <span class="status-label">Status</span>
+                    <span class="status-value">Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
