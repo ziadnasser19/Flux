@@ -128,7 +128,7 @@
 .top-header p {
   font-size: 28px;
   color: #201e34;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 10px;
   margin-right: 150px;
   cursor: default;
@@ -917,4 +917,129 @@ table {
   color: #1a1a1a;
   margin: 0;
   font-family: "Outfit", sans-serif;
+}
+
+#main-settings {
+  margin: 25px;
+}
+.titles {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.titles h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #201e34;
+}
+.titles p {
+  font-size: 20px;
+  font-weight: 300;
+  color: #7a8697;
+}
+
+.fields-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.fields-header h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #201e34;
+}
+
+.fields-header a {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #29a073;
+  font-size: 22px;
+}
+
+.input-fields {
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+  align-items: center;
+}
+
+.input-fields .email-input {
+  grid-column: 1 / -1;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.input-wrapper i {
+  position: absolute;
+  transform: translateY(-50%);
+  color: #929eae;
+  font-size: 20px;
+  cursor: pointer;
+  top: 50%;
+}
+
+.lock-icon {
+  left: 12px;
+  right: auto;
+}
+
+.eye-icon {
+  right: 12px;
+  left: auto;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.update-btn {
+  padding: 12px 30px;
+  background-color: #29a073;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  transition: transform 0.3s;
+}
+
+.update-btn:hover {
+  background-color: #248c66;
+  transform: translateY(-3px);
 }
