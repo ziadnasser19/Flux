@@ -16,6 +16,8 @@
   grid-template-columns: 250px 1fr;
 }
 
+/*Sidebar*/
+
 .sidebar {
   background-color: #f5f7fa;
   border-right: 1px solid #e2e8f0;
@@ -107,6 +109,8 @@
   flex-grow: 1;
 }
 
+/*Main content*/
+
 .main-content {
   padding: 20px 25px;
   padding-top: 30px;
@@ -118,7 +122,7 @@
   flex-direction: column;
   padding-bottom: 20px;
 }
-
+/*top header in main content*/
 .top-header {
   display: flex;
   flex-direction: row;
@@ -223,6 +227,7 @@
   transform: translateY(-3px);
 }
 
+/*Dashbord*/
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -329,7 +334,7 @@
   flex-grow: 1;
   min-height: 0;
 }
-
+/*charts in dashboard*/
 .chart-container {
   background-color: #ffffff;
   border-radius: 20px;
@@ -389,6 +394,7 @@ table {
   color: #929eae;
 }
 
+/*transaction*/
 .transaction-header {
   display: flex;
   justify-content: space-between;
@@ -520,6 +526,7 @@ table {
   color: #64748b;
 }
 
+/*Planning*/
 .monthly-budjet {
   display: flex;
   flex-direction: column;
@@ -686,6 +693,7 @@ table {
   align-self: center;
 }
 
+/*wallets*/
 .main-grid {
   display: flex;
   flex-direction: row;
@@ -919,6 +927,7 @@ table {
   font-family: "Outfit", sans-serif;
 }
 
+/*Settings*/
 #main-settings {
   margin: 25px;
 }
