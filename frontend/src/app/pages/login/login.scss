@@ -198,3 +198,15 @@ form {
 .sign-in-link:hover {
   text-decoration: underline;
 }
+
+.error-message {
+  background-color: #fee2e2; // Light red
+  color: #dc2626; // Dark red
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #fecaca;
+  font-family: 'Kumbh Sans', sans-serif;
+}

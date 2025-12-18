@@ -3,14 +3,26 @@
   <h2 class="welcome-text">Welcome Back!</h2>
   <p class="welcome-text-sub">Welcome back! Please enter your details below.</p>
 
-  <form (submit)="$event.preventDefault()">
+  <form (submit)="$event.preventDefault(); onLogin(emailBox.value, passBox.value)">
     <div class="input-group">
       <label>Email</label>
-      <input type="email" placeholder="Enter your email" class="input-field" />
+      <input
+        #emailBox
+        (input)="errorMessage = ''"
+        type="email"
+        placeholder="Enter your email"
+        class="input-field"
+      />
     </div>
     <div class="input-group">
       <label>Password</label>
-      <input type="password" placeholder="••••••••" class="input-field" />
+      <input
+        #passBox
+        (input)="errorMessage = ''"
+        type="password"
+        placeholder="••••••••"
+        class="input-field"
+      />
     </div>
     <div class="form-actions">
       <div class="remember-me">
@@ -19,7 +31,11 @@
       </div>
       <a routerLink="forgot-password" class="forgot-pass">Forgot password</a>
     </div>
-    <input type="button" routerLink="/dashboard" value="Sign In" class="btn-primary" />
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" class="btn-primary">Sign In</button>
     <button type="button" class="btn-secondary">
       <img src="Google__G__logo.svg.webp" class="google-icon" alt="Google Icon" />
       Sign in with Google

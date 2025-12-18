@@ -2,20 +2,29 @@
 <div class="sign-up-form">
   <h2 class="welcome-text">Create new account</h2>
   <p class="welcome-text-sub">Join us today! Please enter your details below.</p>
-  <form (submit)="$event.preventDefault()">
+  <form (submit)="$event.preventDefault(); onSignup(nameBox.value, emailBox.value, passBox.value)">
     <div class="input-group">
       <label>Full Name</label>
-      <input type="text" placeholder="Enter your full name" class="input-field" />
+      <input #nameBox type="text" placeholder="Enter your full name" class="input-field" />
     </div>
     <div class="input-group">
       <label>Email</label>
-      <input type="email" placeholder="Enter your email" class="input-field" />
+      <input
+        #emailBox
+        (input)="errorMessage = ''"
+        type="email"
+        placeholder="Enter your email"
+        class="input-field"
+      />
     </div>
     <div class="input-group">
       <label>Password</label>
-      <input type="password" placeholder="••••••••" class="input-field" />
+      <input #passBox type="password" placeholder="••••••••" class="input-field" />
     </div>
-    <input type="button" routerLink="/dashboard" value="Create Account" class="btn-primary" />
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <button type="submit" class="btn-primary">Create Account</button>
     <button type="button" class="btn-secondary">
       <img src="Google__G__logo.svg.webp" class="google-icon" alt="Google Icon" />
       Sign up with Google
