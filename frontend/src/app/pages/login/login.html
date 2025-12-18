@@ -1,0 +1,32 @@
+<div class="logo"><span class="logo-symbol">F</span>lux</div>
+<div class="sign-in-form">
+  <h2 class="welcome-text">Welcome Back!</h2>
+  <p class="welcome-text-sub">Welcome back! Please enter your details below.</p>
+
+  <form (submit)="$event.preventDefault()">
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" class="input-field" />
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" placeholder="••••••••" class="input-field" />
+    </div>
+    <div class="form-actions">
+      <div class="remember-me">
+        <input type="checkbox" id="remember" />
+        <label for="remember">Remember for 30 Days</label>
+      </div>
+      <a routerLink="forgot-password" class="forgot-pass">Forgot password</a>
+    </div>
+    <input type="button" routerLink="/dashboard" value="Sign In" class="btn-primary" />
+    <button type="button" class="btn-secondary">
+      <img src="Google__G__logo.svg.webp" class="google-icon" alt="Google Icon" />
+      Sign in with Google
+    </button>
+    <p class="sign-up-text">
+      Don't have an account?
+      <a routerLink="/signup" class="sign-up-link">Sign up for free</a>
+    </p>
+  </form>
+</div>

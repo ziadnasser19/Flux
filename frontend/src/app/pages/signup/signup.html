@@ -1,0 +1,28 @@
+<div class="logo"><span class="logo-symbol">F</span>lux</div>
+<div class="sign-up-form">
+  <h2 class="welcome-text">Create new account</h2>
+  <p class="welcome-text-sub">Join us today! Please enter your details below.</p>
+  <form (submit)="$event.preventDefault()">
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" placeholder="Enter your full name" class="input-field" />
+    </div>
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" class="input-field" />
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" placeholder="••••••••" class="input-field" />
+    </div>
+    <input type="button" routerLink="/dashboard" value="Create Account" class="btn-primary" />
+    <button type="button" class="btn-secondary">
+      <img src="Google__G__logo.svg.webp" class="google-icon" alt="Google Icon" />
+      Sign up with Google
+    </button>
+    <p class="sign-in-text">
+      Already have an account?
+      <a routerLink="/login" class="sign-in-link">Sign in</a>
+    </p>
+  </form>
+</div>

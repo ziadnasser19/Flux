@@ -1,0 +1,36 @@
+.full-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: white;
+}
+
+.left-section {
+  width: 53.125%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  background-color: white;
+}
+
+.left-section p {
+  font-family: 'Outfit', sans-serif;
+}
+
+.right-section {
+  width: 46.875%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 0;
+}
+
+.registeration-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
