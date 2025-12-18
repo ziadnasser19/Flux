@@ -1,4 +1,7 @@
-<p>main-layout works!</p>
-<div class="content-area">
-  <router-outlet></router-outlet>
+<div class="app-container layout-dashboard">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </main>
 </div>

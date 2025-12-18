@@ -1,1 +1,28 @@
-<p>transaction-table works!</p>
+<table class="transaction-table">
+  <thead>
+    <tr>
+      <th>NAME/BUSINESS</th>
+      <th>TYPE</th>
+      <th>AMOUNT</th>
+      <th>DATE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of transactions">
+      <td>
+        <div class="transaction-info">
+          <i [class]="item.icon"></i>
+          <div class="transaction-text">
+            <p class="transaction-name">{{ item.name }}</p>
+            <p class="transaction-company">{{ item.company }}</p>
+          </div>
+        </div>
+      </td>
+      <td>{{ item.type }}</td>
+      <td [class.positive]="item.amount > 0" [class.negative]="item.amount < 0">
+        {{ item.amount | currency }}
+      </td>
+      <td>{{ item.date }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,50 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  color: #929eae;
+  font-size: 13px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  text-align: left;
+}
+td {
+  padding: 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #201e34;
+}
+
+.transaction-info {
+  display: flex;
+  align-items: center;
+}
+.transaction-info i {
+  font-size: 24px;
+  margin-right: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  color: #201e34;
+}
+.transaction-text {
+  display: flex;
+  flex-direction: column;
+}
+.transaction-name {
+  font-weight: 500;
+  color: #201e34;
+}
+.transaction-company {
+  font-size: 14px;
+  color: #929eae;
+}
+
+.negative {
+  color: #f56565;
+  font-weight: 500;
+}
+.positive {
+  color: #48bb78;
+  font-weight: 500;
+}

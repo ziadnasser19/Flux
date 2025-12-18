@@ -5,35 +5,55 @@
     </a>
   </div>
   <div class="sidebar-element">
-    <a routerLink="/dashboard" class="active-link">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <i class="bx bxs-home"></i>
       <p>Dashboard</p>
     </a>
   </div>
 
   <div class="sidebar-element">
-    <a routerLink="/Transactions">
+    <a
+      routerLink="/transactions"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <i class="bx bx-transfer"></i>
       <p>Transactions</p>
     </a>
   </div>
 
   <div class="sidebar-element">
-    <a routerLink="/Wallets">
+    <a
+      routerLink="/wallets"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <i class="bx bxs-wallet"></i>
       <p>My Wallets</p>
     </a>
   </div>
 
   <div class="sidebar-element">
-    <a routerLink="/Settings">
+    <a
+      routerLink="/settings"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <i class="bx bxs-cog"></i>
       <p>Settings</p>
     </a>
   </div>
 
   <div class="sidebar-element">
-    <a routerLink="/Planning">
+    <a
+      routerLink="/planning"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <i class="bx bx-trending-up"></i>
       <p>Planning</p>
     </a>
@@ -42,14 +62,18 @@
   <div class="spacer"></div>
 
   <div class="sidebar-element">
-    <a routerLink="/Help">
+    <a
+      routerLink="/help"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <i class="bx bxs-help-circle"></i>
       <p>Help</p>
     </a>
   </div>
 
   <div class="sidebar-element">
-    <a routerLink="/Login">
+    <a (click)="onLogout()">
       <i class="bx bx-log-out"></i>
       <p>Logout</p>
     </a>

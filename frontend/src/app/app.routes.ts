@@ -10,7 +10,7 @@ import { Planning } from './pages/planning/planning';
 import { Signup } from './pages/signup/signup';
 import { ForgotPassword } from './pages/forgot-password/forgot-password';
 import { NotFound } from './pages/not-found/not-found';
-
+import { authGuard } from './guards/auth-guard';
 export const routes: Routes = [
   {
     path: '',
@@ -19,12 +19,14 @@ export const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: Login },
       { path: 'signup', component: Signup },
-      { path: 'forgot-password', component: ForgotPassword }, // هتزودها هنا
+      { path: 'forgot-password', component: ForgotPassword },
     ],
   },
   {
     path: 'dashboard',
     component: MainLayout,
+    canActivate: [authGuard], // This protects the layout and all its children
+
     children: [
       { path: '', component: Dashboard },
       { path: 'transactions', component: Transactions },

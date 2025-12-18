@@ -22,7 +22,7 @@ export class Signup {
     }
     const nameParts = fullName.trim().split(' ');
     const newUser: IUser = {
-      id: crypto.randomUUID(),
+      id: '',
       firstName: nameParts[0] || '',
       lastName: nameParts.slice(1).join(' ') || '',
       email: emailVal,

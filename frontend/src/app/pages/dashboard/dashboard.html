@@ -1,1 +1,41 @@
-<p>dashboard works!</p>
+<div class="cards">
+  <app-stat-card
+    *ngFor="let card of cardsConfig; let i = index"
+    [title]="card.title"
+    [amount]="stats[card.key]"
+    [iconClass]="card.icon"
+    [variant]="i === activeCardIndex ? 'dark' : 'light'"
+    (mouseenter)="setActiveCard(i)"
+  >
+  </app-stat-card>
+</div>
+
+<div class="bottom-main-content">
+  <div class="charts">
+    <div class="chart-container">
+      <div class="chart-header">
+        <h3>Working Capital</h3>
+        <select title="Choose period" [(ngModel)]="selectedPeriod" (change)="updateChart()">
+          <option value="Last 7 days">Last 7 days</option>
+          <option value="Last 30 days">Last 30 days</option>
+          <option value="Last year">Last year</option>
+        </select>
+      </div>
+      <div class="chart-body">
+        <app-chart [chartData]="currentChartData"></app-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="recent-transaction">
+    <div class="transaction-header">
+      <h3>Recent Transactions</h3>
+      <a routerLink="/transactions">
+        View All
+        <i class="bx bx-chevron-right"></i>
+      </a>
+    </div>
+
+    <app-transaction-table [transactions]="recentTransactions"></app-transaction-table>
+  </div>
+</div>

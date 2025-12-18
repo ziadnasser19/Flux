@@ -1,11 +1,21 @@
+// sidebar.component.ts
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
 export class Sidebar {
+  constructor(private authService: Auth) {}
 
+  onLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+      this.authService.logout();
+    }
+  }
 }

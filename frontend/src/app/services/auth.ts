@@ -5,16 +5,17 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class Auth {
-  public users: IUser[] = [
+  private static lastId = 2;
+  private users: IUser[] = [
     {
-      id: crypto.randomUUID(),
+      id: '1',
       firstName: 'Ziad',
       lastName: 'Nasser',
       email: 'ziad@flux.com',
       password: '123',
     },
     {
-      id: crypto.randomUUID(),
+      id: '2',
       firstName: 'Guest',
       lastName: 'User',
       email: 'guest@flux.com',
@@ -54,6 +55,9 @@ export class Auth {
     if (exists) {
       return false; // Email already taken
     }
+
+    Auth.lastId++;
+    newUser.id = Auth.lastId.toString();
     this.users.push(newUser);
     return true; // Success
   }

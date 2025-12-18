@@ -1,1 +1,9 @@
-<p>stat-card works!</p>
+<div class="card" [ngClass]="variant === 'dark' ? 'dark-card' : 'light-card'">
+  <div class="card-icon">
+    <i [class]="iconClass"></i>
+  </div>
+  <div class="card-content">
+    <p class="card-title">{{ title }}</p>
+    <p class="card-value">{{ amount | currency }}</p>
+  </div>
+</div>
