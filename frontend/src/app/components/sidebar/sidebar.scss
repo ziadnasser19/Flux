@@ -1,3 +1,10 @@
+// Variables for consistent colors & transitions
+$primary-dark: #201e34;
+$accent-green: #c8ee44;
+$text-grey: #929eae;
+$hover-bg: rgba(200, 238, 68, 0.15); // A light transparent green for hover
+$transition-curve: cubic-bezier(0.4, 0, 0.2, 1); // "Standard" Material Design curve
+
 .sidebar {
   background-color: #f5f7fa;
   border-right: 1px solid #e2e8f0;
@@ -12,15 +19,15 @@
 
 .sidebar p {
   font-family: 'Outfit', sans-serif;
+  margin: 0; // Reset margin for cleaner alignment
 }
 
 .logo {
   background-color: transparent;
-
   width: 100%;
   padding: 0;
-  margin-bottom: 10px;
-  color: #201e34;
+  margin-bottom: 30px; // Increased spacing below logo
+  color: $primary-dark;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,58 +39,84 @@
   font-family: 'Outfit', sans-serif;
   width: fit-content;
   position: relative;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-.logo-symbol {
-  color: #c8ee44;
-}
+  transition: transform 0.3s $transition-curve, box-shadow 0.3s $transition-curve;
 
-.logo:hover {
-  cursor: pointer;
-  transform: translateY(-3px);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
-}
+  .logo-symbol {
+    color: $accent-green;
+  }
 
-.logo a {
-  text-decoration: none;
-  color: inherit;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .sidebar-element {
   width: 100%;
-}
+  margin-bottom: 10px; // Space between items
 
-.sidebar-element a {
-  display: flex;
-  margin-top: 20px;
-  font-size: 20px;
-  width: 100%;
-  text-decoration: none;
-  margin-bottom: 5px;
-  color: #929eae;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
+  a {
+    display: flex;
+    align-items: center;
+    font-size: 18px; // Adjusted for better fit
+    width: 100%;
+    text-decoration: none;
+    color: $text-grey;
+    border-radius: 12px; // Slightly rounder
+    padding: 12px 20px; // Set padding here for consistency
+    cursor: pointer;
 
-.active-link {
-  padding: 12px 20px !important;
-  color: #201e34 !important;
-  font-weight: 400 !important;
-  background-color: #c8ee44 !important;
-  cursor: pointer !important;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-}
+    // THE MAGIC: Smooth transitions for specific properties
+    transition: background-color 0.3s $transition-curve, color 0.3s $transition-curve,
+      transform 0.2s $transition-curve, box-shadow 0.3s $transition-curve;
 
-.sidebar-element a:hover {
-  transform: translateY(-2px);
-}
+    i {
+      margin-right: 12px;
+      font-size: 24px;
+      transition: transform 0.3s $transition-curve, color 0.3s ease;
+    }
 
-.sidebar-element i {
-  margin-right: 12px;
-  font-size: 24px;
+    // Hover State (When not active)
+    &:hover:not(.active-link) {
+      background-color: $hover-bg;
+      color: $primary-dark;
+      transform: translateX(5px); // Slight slide to right looks better on sidebars
+
+      i {
+        transform: scale(1.1); // Icon pops slightly
+        color: darken($accent-green, 20%);
+      }
+    }
+
+    // Active State (Current Page)
+    &.active-link {
+      background-color: $accent-green;
+      color: $primary-dark;
+      font-weight: 500; // Slightly bolder
+      box-shadow: 0 4px 12px rgba(200, 238, 68, 0.4); // Nice glow
+      transform: none; // Reset hover movement
+
+      i {
+        transform: scale(1);
+      }
+    }
+  }
+
+  // Specific style for the Logout button to make it distinct
+  &:last-child a:hover {
+    background-color: rgba(229, 54, 61, 0.1); // Light red background
+    color: #e5363d; // Red text
+
+    i {
+      color: #e5363d;
+    }
+  }
 }
 
 .spacer {
