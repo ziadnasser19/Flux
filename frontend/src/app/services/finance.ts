@@ -1,8 +1,9 @@
 // finance.ts
 import { Injectable } from '@angular/core';
 import { ITransaction } from '../models/itransaction';
-import { Wallets } from '../pages/wallets/wallets';
 import { IWallet } from '../models/iwallet';
+import { IBudget, IGoal } from '../models/iplan';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -118,6 +119,62 @@ export class FinanceService {
           status: 'Active',
         },
       ],
+
+      budgets: [
+        {
+          id: 'b1',
+          name: 'Food & Dining',
+          icon: 'bx bx-restaurant',
+          spent: 420,
+          limit: 600,
+          color: '#00b894',
+        },
+        {
+          id: 'b2',
+          name: 'Shopping',
+          icon: 'bx bx-shopping-bag',
+          spent: 360,
+          limit: 800,
+          color: '#00b894',
+        },
+        {
+          id: 'b3',
+          name: 'Entertainment',
+          icon: 'bx bx-movie-play',
+          spent: 270,
+          limit: 300,
+          color: '#f97316',
+        },
+      ],
+      goals: [
+        {
+          id: 'g1',
+          name: 'New Car',
+          icon: 'bx bxs-car',
+          saved: 5000,
+          target: 20000,
+          color: '#eef2ff',
+          iconColor: '#6366f1',
+        },
+        {
+          id: 'g2',
+          name: 'Dream House',
+          icon: 'bx bxs-home-heart',
+          saved: 45000,
+          target: 150000,
+          color: '#eff6ff',
+          iconColor: '#3b82f6',
+        },
+        {
+          id: 'g3',
+          name: 'Summer Vacation',
+          icon: 'bx bxs-plane-alt',
+          saved: 1800,
+          target: 3000,
+          color: '#ecfeff',
+          iconColor: '#06b6d4',
+        },
+      ],
     },
     '2': { balance: 0, spending: 0, saved: 0, transactions: [], wallets: [] },
     '3': {
@@ -199,6 +256,17 @@ export class FinanceService {
           icon: 'bx bxs-cart',
         },
       ],
+      budgets: [
+        {
+          id: 'b_ak_1',
+          name: 'Transport',
+          icon: 'bx bxs-gas-pump',
+          spent: 500,
+          limit: 1000,
+          color: '#f97316',
+        },
+      ],
+      goals: [],
     },
   };
 
@@ -212,5 +280,13 @@ export class FinanceService {
   }
   getWallets(userId: string): IWallet[] {
     return this.mockData[userId]?.wallets || [];
+  }
+
+  getBudgets(userId: string): IBudget[] {
+    return this.mockData[userId]?.budgets || [];
+  }
+
+  getGoals(userId: string): IGoal[] {
+    return this.mockData[userId]?.goals || [];
   }
 }

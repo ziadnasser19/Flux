@@ -1,1 +1,104 @@
-<p>planning works!</p>
+<div class="content-area">
+  <!-- Section 1: Monthly Budget -->
+  <div class="section-container">
+    <div class="section-header">
+      <h3>Monthly Budget</h3>
+      <button class="add-btn"><i class="bx bx-plus"></i> Add New</button>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Loop Budgets -->
+      <div class="plan-card" *ngFor="let budget of budgets">
+        <div class="card-top">
+          <div class="icon-box default-icon-bg">
+            <i [class]="budget.icon"></i>
+          </div>
+          <div class="details">
+            <p class="category-name">{{ budget.name }}</p>
+            <div class="finance-row">
+              <div class="finance-item">
+                <span>Spending limit</span>
+                <strong>{{ budget.limit | currency }}</strong>
+              </div>
+              <div class="finance-item">
+                <span>Amount spent</span>
+                <strong>{{ budget.spent | currency }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bg">
+          <div
+            class="progress-fill"
+            [style.width.%]="getPercentage(budget.spent, budget.limit)"
+            [style.background-color]="budget.color"
+          >
+            {{ getPercentage(budget.spent, budget.limit) }}%
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span>{{ getPercentage(budget.spent, budget.limit) }}% Used</span>
+          <span class="dot">•</span>
+          <span>{{ budget.limit - budget.spent | currency }} Left</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Saving Goals -->
+  <div class="section-container">
+    <div class="section-header">
+      <h3>Saving Goals</h3>
+      <button class="add-btn"><i class="bx bx-plus"></i> Add New</button>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Loop Goals -->
+      <div class="plan-card" *ngFor="let goal of goals">
+        <div class="card-top">
+          <!-- Dynamic Colors for Icon Box -->
+          <div
+            class="icon-box"
+            [style.background-color]="goal.color"
+            [style.color]="goal.iconColor"
+          >
+            <i [class]="goal.icon"></i>
+          </div>
+          <div class="details">
+            <p class="category-name">{{ goal.name }}</p>
+            <div class="finance-row">
+              <div class="finance-item">
+                <span>Target Amount</span>
+                <strong>{{ goal.target | currency }}</strong>
+              </div>
+              <div class="finance-item">
+                <span>Saved Amount</span>
+                <strong>{{ goal.saved | currency }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bg">
+          <div
+            class="progress-fill"
+            [style.width.%]="getPercentage(goal.saved, goal.target)"
+            [style.background-color]="goal.iconColor"
+          >
+            {{ getPercentage(goal.saved, goal.target) }}%
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span>{{ goal.saved | currency }} Saved</span>
+          <span class="dot">•</span>
+          <span>{{ goal.target - goal.saved | currency }} to go</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
