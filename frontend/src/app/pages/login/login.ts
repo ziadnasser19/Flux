@@ -27,4 +27,8 @@ export class Login {
   togglePassword() {
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
+
+  showAlert() {
+    alert('Google Sign-In is coming soon!');
+  }
 }

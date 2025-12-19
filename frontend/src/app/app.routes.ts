@@ -11,6 +11,7 @@ import { Signup } from './pages/signup/signup';
 import { ForgotPassword } from './pages/forgot-password/forgot-password';
 import { NotFound } from './pages/not-found/not-found';
 import { authGuard } from './guards/auth-guard';
+import { Help } from './pages/help/help';
 
 export const routes: Routes = [
   // 1. Redirect empty path to login (or dashboard if you prefer)
@@ -38,6 +39,7 @@ export const routes: Routes = [
       { path: 'wallets', component: Wallets },
       { path: 'settings', component: Settings },
       { path: 'planning', component: Planning },
+      { path: 'help', component: Help },
     ],
   },
 

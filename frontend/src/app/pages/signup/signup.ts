@@ -59,4 +59,8 @@ export class Signup {
       this.errorMessage = 'This email is already registered.';
     }
   }
+
+  showAlert() {
+    alert('Google Sign-Up is coming soon!');
+  }
 }
