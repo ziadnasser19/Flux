@@ -3,23 +3,43 @@ import { RouterLink, Router } from '@angular/router';
 import { IUser } from '../../models/iuser';
 import { Auth } from '../../services/auth';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-signup',
-  imports: [RouterLink, CommonModule], // Add CommonModule here
+  standalone: true,
+  imports: [RouterLink, CommonModule],
   templateUrl: './signup.html',
-  styleUrl: '../login/login.scss',
+  styleUrl: '../login/login.scss', // Ensure it points to login.scss
 })
 export class Signup {
-  constructor(private authService: Auth, private router: Router) {}
+  passwordType: 'password' | 'text' = 'password';
+  confirmPasswordType: 'password' | 'text' = 'password'; // New state
   errorMessage: string = '';
-  onSignup(fullName: string, emailVal: string, passVal: string) {
-    this.errorMessage = ''; // Reset error
 
-    // 1. Basic Validation: Check if fields are empty
-    if (!fullName || !emailVal || !passVal) {
+  constructor(private authService: Auth, private router: Router) {}
+
+  togglePassword(field: 'main' | 'confirm') {
+    if (field === 'main') {
+      this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+    } else {
+      this.confirmPasswordType = this.confirmPasswordType === 'password' ? 'text' : 'password';
+    }
+  }
+
+  onSignup(fullName: string, emailVal: string, passVal: string, confirmPassVal: string) {
+    this.errorMessage = '';
+
+    // 1. Validation
+    if (!fullName || !emailVal || !passVal || !confirmPassVal) {
       this.errorMessage = 'Please fill in all fields.';
       return;
     }
+
+    if (passVal !== confirmPassVal) {
+      this.errorMessage = "Passwords don't match.";
+      return;
+    }
+
     const nameParts = fullName.trim().split(' ');
     const newUser: IUser = {
       id: '',
@@ -29,16 +49,13 @@ export class Signup {
       password: passVal,
     };
 
-    // 2. Call Service and check if successful
+    // 2. Register
     const isRegistered = this.authService.register(newUser);
 
     if (isRegistered) {
       alert('Account created successfully! Please login now.');
-
-      // Success: Navigate to login
       this.router.navigate(['/login']);
     } else {
-      // Failure: Email exists
       this.errorMessage = 'This email is already registered.';
     }
   }

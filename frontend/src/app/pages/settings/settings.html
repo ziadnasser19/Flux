@@ -1,1 +1,84 @@
-<p>settings works!</p>
+<div class="content-area">
+  <div class="titles">
+    <h3>Account Information</h3>
+    <p>Update your account information</p>
+  </div>
+
+  <div class="main-settings-card">
+    <div class="fields-header">
+      <h3>Personal Information</h3>
+      <a style="cursor: pointer">
+        <i class="bx bx-edit"></i>
+        <span>Edit</span>
+      </a>
+    </div>
+
+    <!-- Inputs Grid -->
+    <div class="input-fields">
+      <div class="input-field">
+        <label>First Name</label>
+        <input type="text" [(ngModel)]="userData.firstName" placeholder="Enter your first name" />
+      </div>
+
+      <div class="input-field">
+        <label>Last Name</label>
+        <input type="text" [(ngModel)]="userData.lastName" placeholder="Enter your last name" />
+      </div>
+
+      <div class="input-field">
+        <label>Date Of Birth</label>
+        <input type="date" [(ngModel)]="userData.dateOfBirth" />
+      </div>
+
+      <div class="input-field">
+        <label>Mobile Number</label>
+        <input type="tel" [(ngModel)]="userData.phoneNumber" placeholder="+123 456 7890" />
+      </div>
+
+      <div class="input-field email-input">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="userData.email" placeholder="name@example.com" />
+      </div>
+
+      <!-- New Password (CLOSED CORRECTLY) -->
+      <div class="input-field">
+        <label>New Password</label>
+        <div class="input-wrapper">
+          <i class="bx bx-lock-alt lock-icon"></i>
+          <input
+            [type]="passwordFieldType"
+            [(ngModel)]="userData.password"
+            placeholder="••••••••"
+          />
+          <i
+            class="bx eye-icon"
+            [ngClass]="passwordFieldType === 'password' ? 'bx-show' : 'bx-hide'"
+            (click)="togglePassword('main'); $event.stopPropagation()"
+          >
+          </i>
+        </div>
+      </div>
+
+      <!-- Confirm Password (NOW A SIBLING) -->
+      <div class="input-field">
+        <label>Confirm Password</label>
+        <div class="input-wrapper">
+          <i class="bx bx-lock-alt lock-icon"></i>
+          <input [type]="confirmPasswordFieldType" placeholder="Re-enter new password" />
+          <i
+            class="bx eye-icon"
+            [ngClass]="confirmPasswordFieldType === 'password' ? 'bx-show' : 'bx-hide'"
+            (click)="togglePassword('confirm'); $event.stopPropagation()"
+          >
+          </i>
+        </div>
+      </div>
+    </div>
+    <!-- End of input-fields grid -->
+
+    <!-- Buttons (Moved outside grid for better positioning) -->
+    <div class="buttons">
+      <button class="update-btn" (click)="onUpdate()">Update Profile</button>
+    </div>
+  </div>
+</div>

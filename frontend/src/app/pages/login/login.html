@@ -16,13 +16,24 @@
     </div>
     <div class="input-group">
       <label>Password</label>
-      <input
-        #passBox
-        (input)="errorMessage = ''"
-        type="password"
-        placeholder="••••••••"
-        class="input-field"
-      />
+
+      <!-- Wrapper for positioning -->
+      <div class="password-wrapper">
+        <input
+          #passBox
+          (input)="errorMessage = ''"
+          [type]="passwordType"
+          placeholder="••••••••"
+          class="input-field"
+        />
+        <!-- The Eye Icon -->
+        <i
+          class="bx"
+          [ngClass]="passwordType === 'password' ? 'bx-show' : 'bx-hide'"
+          (click)="togglePassword(); $event.stopPropagation()"
+        >
+        </i>
+      </div>
     </div>
     <div class="form-actions">
       <div class="remember-me">

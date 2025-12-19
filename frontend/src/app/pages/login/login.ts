@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.scss',
 })
 export class Login {
+  passwordType: 'password' | 'text' = 'password';
   errorMessage: string = '';
   constructor(private authService: Auth, private router: Router) {}
   onLogin(emailVal: string, passVal: string) {
@@ -21,5 +22,9 @@ export class Login {
     } else {
       this.errorMessage = 'Invalid email or password. Please try again.';
     }
+  }
+
+  togglePassword() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
 }

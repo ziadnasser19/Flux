@@ -101,3 +101,84 @@
 .profile-section:hover {
   transform: translateY(-3px);
 }
+
+.profile-section {
+  /* ... keep existing styles ... */
+  user-select: none; /* Prevent text selection on double click */
+
+  /* Add transition for the arrow icon */
+  .bx-chevron-down {
+    transition: transform 0.3s ease;
+    &.rotate {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+  position: absolute;
+  top: 120%; /* Just below the profile section */
+  right: 0;
+  width: 200px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #201e34;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    i {
+      font-size: 18px;
+      color: #929eae;
+    }
+
+    &:hover {
+      background-color: #f5f7fa;
+      color: #29a073;
+
+      i {
+        color: #29a073;
+      }
+    }
+
+    &.logout:hover {
+      background-color: rgba(229, 54, 61, 0.1);
+      color: #e5363d;
+      i {
+        color: #e5363d;
+      }
+    }
+  }
+
+  .divider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 5px 0;
+  }
+}

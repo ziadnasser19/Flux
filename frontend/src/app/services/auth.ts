@@ -68,4 +68,17 @@ export class Auth {
     this.users.push(newUser);
     return true; // Success
   }
+  // Update current user data
+  updateProfile(updatedData: Partial<IUser>) {
+    if (!this.currentUser) return;
+
+    // Merge new data into current user
+    this.currentUser = { ...this.currentUser, ...updatedData };
+
+    // Update the user in the main array as well
+    const index = this.users.findIndex((u) => u.id === this.currentUser?.id);
+    if (index !== -1) {
+      this.users[index] = { ...this.users[index], ...updatedData };
+    }
+  }
 }

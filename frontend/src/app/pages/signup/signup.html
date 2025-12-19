@@ -2,11 +2,18 @@
 <div class="sign-up-form">
   <h2 class="welcome-text">Create new account</h2>
   <p class="welcome-text-sub">Join us today! Please enter your details below.</p>
-  <form (submit)="$event.preventDefault(); onSignup(nameBox.value, emailBox.value, passBox.value)">
+
+  <form
+    (submit)="
+      $event.preventDefault();
+      onSignup(nameBox.value, emailBox.value, passBox.value, confirmBox.value)
+    "
+  >
     <div class="input-group">
       <label>Full Name</label>
       <input #nameBox type="text" placeholder="Enter your full name" class="input-field" />
     </div>
+
     <div class="input-group">
       <label>Email</label>
       <input
@@ -17,18 +24,57 @@
         class="input-field"
       />
     </div>
+
     <div class="input-group">
       <label>Password</label>
-      <input #passBox type="password" placeholder="••••••••" class="input-field" />
+      <div class="password-wrapper">
+        <input
+          #passBox
+          (input)="errorMessage = ''"
+          [type]="passwordType"
+          placeholder="••••••••"
+          class="input-field"
+        />
+        <i
+          class="bx"
+          [ngClass]="passwordType === 'password' ? 'bx-show' : 'bx-hide'"
+          (click)="togglePassword('main'); $event.stopPropagation()"
+        >
+        </i>
+      </div>
     </div>
+
+    <!-- NEW FIELD -->
+    <div class="input-group">
+      <label>Confirm Password</label>
+      <div class="password-wrapper">
+        <input
+          #confirmBox
+          (input)="errorMessage = ''"
+          [type]="confirmPasswordType"
+          placeholder="••••••••"
+          class="input-field"
+        />
+        <i
+          class="bx"
+          [ngClass]="confirmPasswordType === 'password' ? 'bx-show' : 'bx-hide'"
+          (click)="togglePassword('confirm'); $event.stopPropagation()"
+        >
+        </i>
+      </div>
+    </div>
+
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
+
     <button type="submit" class="btn-primary">Create Account</button>
+
     <button type="button" class="btn-secondary">
       <img src="Google__G__logo.svg.webp" class="google-icon" alt="Google Icon" />
       Sign up with Google
     </button>
+
     <p class="sign-in-text">
       Already have an account?
       <a routerLink="/login" class="sign-in-link">Sign in</a>
