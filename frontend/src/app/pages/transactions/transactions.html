@@ -1,1 +1,22 @@
-<p>transactions works!</p>
+<div class="content-area">
+  <!-- Search Bar Section -->
+  <div class="transaction-search-box">
+    <i class="bx bx-search search-icon"></i>
+    <input
+      type="text"
+      placeholder="Search anything on Transactions"
+      class="search-input"
+      (input)="onSearch($event)"
+    />
+  </div>
+
+  <!-- The Reusable Table -->
+  <div class="table-container">
+    <app-transaction-table [transactions]="filteredTransactions"></app-transaction-table>
+
+    <!-- Show message if no results found -->
+    <div *ngIf="filteredTransactions.length === 0" class="no-results">
+      <p>No transactions found.</p>
+    </div>
+  </div>
+</div>

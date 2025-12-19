@@ -11,29 +11,36 @@ import { Signup } from './pages/signup/signup';
 import { ForgotPassword } from './pages/forgot-password/forgot-password';
 import { NotFound } from './pages/not-found/not-found';
 import { authGuard } from './guards/auth-guard';
+
 export const routes: Routes = [
+  // 1. Redirect empty path to login (or dashboard if you prefer)
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  // 2. Auth Routes (No Sidebar/Header)
   {
     path: '',
     component: AuthLayout,
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: Login },
       { path: 'signup', component: Signup },
       { path: 'forgot-password', component: ForgotPassword },
     ],
   },
-  {
-    path: 'dashboard',
-    component: MainLayout,
-    canActivate: [authGuard], // This protects the layout and all its children
 
+  // 3. Main App Routes (With Sidebar/Header)
+  {
+    path: '',
+    component: MainLayout,
+    canActivate: [authGuard],
     children: [
-      { path: '', component: Dashboard },
+      { path: 'dashboard', component: Dashboard },
       { path: 'transactions', component: Transactions },
       { path: 'wallets', component: Wallets },
       { path: 'settings', component: Settings },
       { path: 'planning', component: Planning },
     ],
   },
+
+  // 4. Wildcard (404)
   { path: '**', component: NotFound },
 ];
