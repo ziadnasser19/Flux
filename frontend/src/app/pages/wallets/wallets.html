@@ -1,1 +1,40 @@
-<p>wallets works!</p>
+<div class="content-area">
+  <div class="budjet-header">
+    <!-- Header Logic same as Planning page -->
+    <h3>My Wallets</h3>
+    <button class="add-btn"><i class="bx bx-plus"></i> Add New Card</button>
+  </div>
+
+  <div class="main-grid">
+    <!-- Loop through wallets -->
+    <div class="wallet-container" *ngFor="let wallet of myWallets">
+      <!-- 1. The Visual Card Component -->
+      <app-credit-card [wallet]="wallet"></app-credit-card>
+
+      <!-- 2. The Details Below -->
+      <div class="wallet-details">
+        <div class="top-details">
+          <div class="balance-info">
+            <p>Your Balance</p>
+            <span class="balance-value">{{ wallet.balance | currency : wallet.currency }}</span>
+          </div>
+          <!-- Static percentage for now, could be dynamic later -->
+          <div class="change-percentage" [ngClass]="wallet.id === 'w1' ? 'positive' : 'negative'">
+            <i class="bx bx-up-arrow-alt"></i> {{ wallet.id === 'w1' ? '23.65%' : '8.42%' }}
+          </div>
+        </div>
+
+        <div class="bottom-details">
+          <div class="detail-box">
+            <span class="label">Currency</span>
+            <span class="value">{{ wallet.currency }}</span>
+          </div>
+          <div class="detail-box">
+            <span class="label">Status</span>
+            <span class="value status-active">{{ wallet.status }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,13 @@ export class Auth {
       email: 'guest@flux.com',
       password: '456',
     },
+    {
+      id: '3',
+      firstName: 'Abdullah',
+      lastName: 'Kamel',
+      email: 'abdullah@flux.com',
+      password: '789',
+    },
   ];
 
   public currentUser: IUser | null = null;

@@ -1,0 +1,159 @@
+.content-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* src/app/pages/wallets/wallets.scss */
+
+.budjet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px; /* Increased slightly */
+
+  h3 {
+    color: #201e34;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .add-btn {
+    background-color: #201e34;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px; /* Bigger touch area */
+    border-radius: 50px; /* Fully rounded pill shape */
+
+    font-family: 'Outfit', sans-serif; /* Matches headings */
+    font-weight: 600;
+    font-size: 15px;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother animation */
+    box-shadow: 0 4px 6px rgba(32, 30, 52, 0.15); /* Subtle depth */
+
+    i {
+      font-size: 20px; /* Larger icon */
+    }
+
+    &:hover {
+      background-color: #34324a; /* Slightly lighter on hover */
+      transform: translateY(-3px); /* Lift up effect */
+      box-shadow: 0 10px 20px rgba(32, 30, 52, 0.25); /* Stronger shadow */
+    }
+
+    &:active {
+      transform: translateY(-1px); /* Press effect */
+      box-shadow: 0 5px 10px rgba(32, 30, 52, 0.2);
+    }
+  }
+}
+
+/* --- THE FIX START --- */
+.main-grid {
+  display: grid;
+  /* 
+     minmax(350px, 1fr): 
+     - Cards will never be smaller than 350px (min-width).
+     - 1fr means they will stretch to fill available space equally.
+     - auto-fit: Automatically fits 2 or 3 cards depending on screen width.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+
+.wallet-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Fill the grid cell */
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+
+  /* Optional: Cap the max width if you don't want them to get HUGE on big screens */
+  max-width: 500px;
+  /* Center the card itself in the grid cell if it hits max-width */
+  margin: 0 auto;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+/* --- THE FIX END --- */
+
+.wallet-details {
+  padding: 20px 25px;
+}
+
+.top-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
+
+  .balance-info p {
+    font-size: 14px;
+    color: #7a8697;
+    margin-bottom: 5px;
+  }
+
+  .balance-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #201e34;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .change-percentage {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+
+    &.positive {
+      color: #00b894;
+    }
+    &.negative {
+      color: #e5363d;
+      i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.bottom-details {
+  display: flex;
+  justify-content: space-between;
+
+  .detail-box {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+      font-size: 13px;
+      color: #929eae;
+      margin-bottom: 4px;
+    }
+    .value {
+      font-size: 16px;
+      font-weight: 500;
+      color: #201e34;
+    }
+    .status-active {
+      color: #29a073;
+    }
+  }
+}

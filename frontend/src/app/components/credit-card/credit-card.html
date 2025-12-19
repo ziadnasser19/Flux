@@ -1,1 +1,22 @@
-<p>credit-card works!</p>
+<!-- The class 'type1' or 'type2' comes from wallet.theme -->
+<div class="card" [ngClass]="wallet.theme">
+  <div class="card-top">
+    <span class="bank-name">{{ wallet.bankName }}</span>
+    <i class="bx bx-wifi card-wifi"></i>
+  </div>
+
+  <div class="card-middle">
+    <div class="card-number">**** **** **** {{ wallet.cardNumber }}</div>
+    <div class="sim-chip"></div>
+  </div>
+
+  <div class="card-bottom">
+    <div class="card-exp-info">
+      <span class="exp-label">Expires</span>
+      <span class="exp-date">{{ wallet.expiryDate }}</span>
+    </div>
+    <div class="card-brand">
+      <i class="bx bxl-visa"></i>
+    </div>
+  </div>
+</div>
